@@ -109,7 +109,10 @@ const Sidebar = () => {
                     )}
                     {!editingBoardId && (
                         <HStack className="board-controller">
-                            <CiEdit onClick={() => setEditingBoardId(board._id)} />
+                            <CiEdit
+                                onClick={() => setEditingBoardId(board._id)}
+                                style={{ color: 'white' }}
+                            />
                             <MdOutlineDeleteForever onClick={() => {
                                 deleteBoardRef.current = board._id;
                                 onOpen();

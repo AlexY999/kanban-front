@@ -81,15 +81,15 @@ function Task({ t, index }) {
     };
 
     // Render subtasks
-    const renderSubtasks = () =>
+    const renderSubtasks = () => (
         subtask.map((st) => (
-            <HStack key={st._id} className="subtask" justifyContent="space-between">
+            <HStack key={st._id} className="subtask" justifyContent="space-between" style={{ padding: '8px', borderBottom: '1px solid #e2e8f0' }}>
                 {editSubtask === st._id ? (
                     <HStack>
                         <Input autoFocus defaultValue={st.title} ref={editSubtaskRef} />
                         <HStack>
-                            <BsCheckLg onClick={() => handleUpdate('subtask', editSubtaskRef, st._id, st.title)} />
-                            <RxCross2 onClick={() => setEditSubtask(null)} />
+                            <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('subtask', editSubtaskRef, st._id, st.title)} />
+                            <RxCross2 style={{ color: '#e53e3e', cursor: 'pointer' }} onClick={() => setEditSubtask(null)} />
                         </HStack>
                     </HStack>
                 ) : (
@@ -101,17 +101,19 @@ function Task({ t, index }) {
                                 onChange={(e) =>
                                     handleStatusChange('subtask', st._id, { isCompleted: e.target.checked })
                                 }
+                                style={{ marginRight: '8px' }}
                             />
                             <Text as={st.isCompleted ? 's' : 'p'}>{st.title}</Text>
                         </HStack>
                         <HStack>
-                            <TbEdit onClick={() => setEditSubtask(st._id)} />
-                            <MdDelete onClick={() => handleSubtaskDelete(st._id)} />
+                            <TbEdit style={{ color: '#3182ce', cursor: 'pointer' }} onClick={() => setEditSubtask(st._id)} />
+                            <MdDelete style={{ color: '#e53e3e', cursor: 'pointer' }} onClick={() => handleSubtaskDelete(st._id)} />
                         </HStack>
                     </>
                 )}
             </HStack>
-        ));
+        ))
+    );
 
     return (
         <>
@@ -123,11 +125,12 @@ function Task({ t, index }) {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
+                        style={{ padding: '16px', margin: '8px 0', background: '#f7fafc', border: snapshot.isDragging ? '2px dashed #3182ce' : '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer' }}
                     >
-                        <Text className="task-heading" noOfLines={2} cursor="pointer">
+                        <Text className="task-heading" noOfLines={2} style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
                             {description}
                         </Text>
-                        <Text className="subtask-info">
+                        <Text className="subtask-info" style={{ color: '#718096' }}>
                             {subtask.filter((st) => st.isCompleted).length} of {subtask.length} subtasks
                         </Text>
                     </Box>
@@ -137,22 +140,24 @@ function Task({ t, index }) {
             {/* Modal */}
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
                 <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>
+                <ModalContent style={{ padding: '24px', borderRadius: '16px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)' }}>
+                    <ModalHeader style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         {editName ? (
                             <HStack>
                                 <Input autoFocus defaultValue={title} ref={editNameRef} />
                                 <HStack>
-                                    <BsCheckLg onClick={() => handleUpdate('task', editNameRef, taskId, title)} />
-                                    <RxCross2 onClick={() => setEditName(false)} />
+                                    <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('task', editNameRef, taskId, title)} />
+                                    <RxCross2 style={{ color: '#e53e3e', cursor: 'pointer' }} onClick={() => setEditName(false)} />
                                 </HStack>
                             </HStack>
                         ) : (
-                            <Heading onDoubleClick={() => setEditName(true)}>Task: {title}</Heading>
+                            <Heading style={{ fontSize: '22px', color: '#2d3748', flexGrow: 1 }} onDoubleClick={() => setEditName(true)}>
+                                Task: {title}
+                            </Heading>
                         )}
-                        <HStack>
-                            <TbEdit onClick={() => setEditName(true)} />
-                            <RiDeleteBin6Line onClick={handleTaskDelete} />
+                        <HStack spacing={4}>
+                            <TbEdit style={{ color: '#3182ce', cursor: 'pointer' }} onClick={() => setEditName(true)} />
+                            <RiDeleteBin6Line style={{ color: '#e53e3e', cursor: 'pointer' }} onClick={handleTaskDelete} />
                         </HStack>
                     </ModalHeader>
                     <ModalBody>
@@ -160,28 +165,34 @@ function Task({ t, index }) {
                             <HStack>
                                 <Input autoFocus defaultValue={description} ref={editDescRef} />
                                 <HStack>
-                                    <BsCheckLg onClick={() => handleUpdate('task', editDescRef, taskId, description)} />
-                                    <RxCross2 onClick={() => setEditDesc(false)} />
+                                    <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('task', editDescRef, taskId, description)} />
+                                    <RxCross2 style={{ color: '#e53e3e', cursor: 'pointer' }} onClick={() => setEditDesc(false)} />
                                 </HStack>
                             </HStack>
                         ) : (
                             <HStack justifyContent="space-between">
-                                <Text onDoubleClick={() => setEditDesc(true)}>{description}</Text>
-                                <TbEdit onClick={() => setEditDesc(true)} />
+                                <Text style={{ color: '#4a5568', fontSize: '16px' }} onDoubleClick={() => setEditDesc(true)}>{description}</Text>
+                                <TbEdit style={{ color: '#3182ce', cursor: 'pointer' }} onClick={() => setEditDesc(true)} />
                             </HStack>
                         )}
 
-                        <VStack align="flex-start" spacing={4}>
-                            <Text>Subtasks ({subtask.filter((st) => st.isCompleted).length} of {subtask.length})</Text>
+                        <VStack align="flex-start" spacing={6} style={{ marginTop: '20px' }}>
+                            <Text style={{ fontWeight: 'bold', color: '#2d3748', fontSize: '18px' }}>
+                                Subtasks ({subtask.filter((st) => st.isCompleted).length} of {subtask.length})
+                            </Text>
                             {renderSubtasks()}
-                            <Text>Current Status</Text>
-                            <Select onChange={(e) => handleStatusChange('task', taskId, { status: e.target.value })} defaultValue={status}>
+                            <Text style={{ fontWeight: 'bold', color: '#2d3748', fontSize: '18px' }}>Current Status</Text>
+                            <Select
+                                onChange={(e) => handleStatusChange('task', taskId, { status: e.target.value })}
+                                defaultValue={status}
+                                style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '8px', fontSize: '14px' }}
+                            >
                                 <option value="Todo">➕ Todo</option>
                                 <option value="Doing">⏳ Doing</option>
                                 <option value="Done">✔ Done</option>
                             </Select>
-                            <HStack color="gray.600" fontSize="12px">
-                                <bdi>Created at:</bdi>
+                            <HStack color="gray.600" fontSize="12px" style={{ marginTop: '16px' }}>
+                                <bdi style={{ fontWeight: 'bold', color: '#4a5568' }}>Created at:</bdi>
                                 <Text>{date} | 🕖 {time}</Text>
                             </HStack>
                         </VStack>

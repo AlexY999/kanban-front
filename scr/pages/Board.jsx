@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Center, Flex, Heading, Image, VStack } from '@chakra-ui/react';
+import {Box, Center, Flex, Heading, Text, VStack} from '@chakra-ui/react';
 
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
@@ -70,14 +70,15 @@ function Board() {
         <>
             <Navbar />
             <Flex className="container">
-                {/* Сайдбар */}
                 <Box className="sidebar">
                     <Sidebar />
                 </Box>
-
-                {/* Контентная часть */}
                 {renderTaskSections()}
             </Flex>
+            <Text align="center" position="fixed" bottom="0" width="100%">
+                Copyright © 2024-2025
+            </Text>
+
         </>
     );
 }

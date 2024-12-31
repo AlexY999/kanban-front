@@ -73,16 +73,13 @@ function Signin() {
             minH="100vh"
             align="center"
             justify="center"
-            bg={useColorModeValue('gray.50', 'gray.800')}
+            bg={useColorModeValue('blue.50', 'blue.50')}
         >
             <Stack spacing={8} mx="auto" maxW="lg">
                 <Stack align="center">
                     <Heading fontSize="4xl" textAlign="center">
-                        Sign-in on Kanban
+                        Sign-in
                     </Heading>
-                    <Text fontSize="lg" color="gray.600">
-                        to maintain your tasks easily ✌️
-                    </Text>
                 </Stack>
                 <Box
                     rounded="lg"
