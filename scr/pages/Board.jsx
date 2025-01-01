@@ -42,13 +42,13 @@ function Board() {
 
         if (!board.tasks) {
             return (
-                <Center>
+                <Box className="text-wrapper">
                     <VStack>
                         <Heading color="var(--primary-color)" textAlign="center">
                             SELECT A BOARD TO SEE THE DATA
                         </Heading>
                     </VStack>
-                </Center>
+                </Box>
             );
         }
 
