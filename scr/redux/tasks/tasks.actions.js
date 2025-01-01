@@ -134,6 +134,7 @@ export const deleteTask = (taskId, boardId, toastMsg) => async (dispatch) => {
         const res = await fetchWithAuth(`${import.meta.env.VITE_BACKEND_BASE_URL}/task/${taskId}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ boardId }),
         });
 
         const response = await handleResponse(res, dispatch, savedNavigate, savedToastMsg);
