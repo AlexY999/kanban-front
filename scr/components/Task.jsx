@@ -120,14 +120,17 @@ function Task({ t, index }) {
             <Draggable draggableId={taskId} index={index}>
                 {(provided, snapshot) => (
                     <Box
-                        className={`task ${snapshot.isDragging ? 'dragging-task' : ''}`}
+                        className={`task ${snapshot.isDragging ? 'dragging-task' : 'task'}`}
                         onClick={onOpen}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={{ padding: '16px', margin: '8px 0', background: '#f7fafc', border: snapshot.isDragging ? '2px dashed #3182ce' : '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer' }}
+                        style={{
+                            ...provided.draggableProps.style,
+                            border: snapshot.isDragging ? '2px dashed #3182ce' : '1px solid #e2e8f0',
+                        }}
                     >
-                        <Text className="task-heading" noOfLines={2} style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
+                        <Text className="task-heading" noOfLines={2} >
                             {description}
                         </Text>
                         <Text className="subtask-info" style={{ color: '#718096' }}>
