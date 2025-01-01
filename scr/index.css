@@ -238,6 +238,11 @@ input:focus {
     color: #333;
 }
 
+.gap-10px{
+    display: flex;
+    gap: 10px;
+}
+
 .task-dragging-over {
     background-color: rgba(0, 123, 255, 0.1);
     border: 2px dashed var(--primary-color);
@@ -490,7 +495,7 @@ input:focus {
 }
 
 .text-wrapper{
-    margin: 85px 0 0 15px;
+    margin: 60px 0 0 15px;
     align-items: center;
 }
 

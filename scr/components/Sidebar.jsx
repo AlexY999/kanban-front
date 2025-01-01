@@ -148,10 +148,15 @@ const Sidebar = () => {
                     </HStack>
                 )}
 
-                <Button className="new-board-btn" onClick={() => setIsCreatingBoard((prev) => !prev)}>
+                <Button className="new-board-btn"
+                onClick={() => {
+                    setIsCreatingBoard(true);
+                    handleCreateBoard();
+                }}
+                >
                     <HStack>
                         {isCreatingBoard ? <RxCross2 /> : <AiOutlinePlus />}
-                        <Text>{isCreatingBoard ? 'Close' : 'Create New Board'}</Text>
+                        <Text>{isCreatingBoard ? 'Add new board' : 'Create New Board'}</Text>
                     </HStack>
                 </Button>
             </VStack>
@@ -165,6 +170,7 @@ const Sidebar = () => {
                         <Text color="var(--primary-delete-color)" mt={4}>🗑 Delete the Board</Text>
                     </ModalBody>
                     <ModalFooter>
+                        <div class="gap-10px">
                         <Button colorScheme="blue" onClick={onClose}>
                             Cancel
                         </Button>
@@ -174,6 +180,7 @@ const Sidebar = () => {
                                 <Text>Delete</Text>
                             </HStack>
                         </Button>
+                        </div>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
