@@ -58,13 +58,16 @@ function Task({ t, index }) {
     const [editSubtask, setEditSubtask] = useState(null);
 
     // Handlers
-    const handleUpdate = (type, ref, id, data) => {
+    const handleUpdate = (type, ref, id, field, data) => {
         const newValue = ref.current.value.trim();
+
         if (newValue && newValue !== data) {
             const action = type === 'task' ? updateTask : updateSubTask;
-            dispatch(action(id, boardId, { title: newValue }, toastMsg));
+            const updatedData = { [field]: newValue };
+            dispatch(action(id, boardId, updatedData, toastMsg));
         }
     };
+
 
     const handleTaskDelete = () => {
         dispatch(deleteTask(taskId, boardId, toastMsg));
@@ -88,7 +91,7 @@ function Task({ t, index }) {
                     <HStack>
                         <Input autoFocus defaultValue={st.title} ref={editSubtaskRef} />
                         <HStack>
-                            <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('subtask', editSubtaskRef, st._id, st.title)} />
+                            <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('subtask', editSubtaskRef, st._id,'title', st.title)} />
                             <RxCross2 style={{ color: '#e53e3e', cursor: 'pointer' }} onClick={() => setEditSubtask(null)} />
                         </HStack>
                     </HStack>
@@ -131,7 +134,7 @@ function Task({ t, index }) {
                         }}
                     >
                         <Text className="task-heading" noOfLines={2} >
-                            {description}
+                            {title}
                         </Text>
                         <Text className="subtask-info" style={{ color: '#718096' }}>
                             {subtask.filter((st) => st.isCompleted).length} of {subtask.length} subtasks
@@ -149,7 +152,7 @@ function Task({ t, index }) {
                             <HStack>
                                 <Input autoFocus defaultValue={title} ref={editNameRef} />
                                 <HStack>
-                                    <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('task', editNameRef, taskId, title)} />
+                                    <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('task', editNameRef, taskId, 'title', title)} />
                                     <RxCross2 style={{ color: '#e53e3e', cursor: 'pointer' }} onClick={() => setEditName(false)} />
                                 </HStack>
                             </HStack>
@@ -168,7 +171,7 @@ function Task({ t, index }) {
                             <HStack>
                                 <Input autoFocus defaultValue={description} ref={editDescRef} />
                                 <HStack>
-                                    <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('task', editDescRef, taskId, description)} />
+                                    <BsCheckLg style={{ color: '#38a169', cursor: 'pointer' }} onClick={() => handleUpdate('task', editDescRef, taskId, 'description', description)} />
                                     <RxCross2 style={{ color: '#e53e3e', cursor: 'pointer' }} onClick={() => setEditDesc(false)} />
                                 </HStack>
                             </HStack>
