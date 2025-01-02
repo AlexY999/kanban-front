@@ -50,6 +50,7 @@ export const signin = (cred, navigate, toastMsg) => async (dispatch) => {
         const { data, success } = response;
 
         if (success) {
+            localStorage.setItem('username', data.user.username);
             dispatch({ type: authTypes.AUTH_LOGIN_SUCCESS, payload: data.user });
             nav('/');
         } else {

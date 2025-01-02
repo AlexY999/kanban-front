@@ -49,7 +49,7 @@ input:focus {
 }
 
 .sidebar {
-    min-height: 70svh;
+    min-height: 80svh;
     width: 22rem;
     background-color: #007bff;
     border-radius: 0px 15px 15px 0px;
@@ -179,7 +179,7 @@ input:focus {
 
 .tasks {
     position: relative;
-    min-height: 90svh;
+    min-height: 80svh;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -236,6 +236,11 @@ input:focus {
     font-size: 14px;
     font-weight: 500;
     color: #333;
+}
+
+.gap-10px{
+    display: flex;
+    gap: 10px;
 }
 
 .task-dragging-over {
@@ -490,7 +495,7 @@ input:focus {
 }
 
 .text-wrapper{
-    margin: 85px 0 0 15px;
+    margin: 60px 0 0 15px;
     align-items: center;
 }
 
