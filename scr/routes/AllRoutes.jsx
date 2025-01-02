@@ -17,6 +17,7 @@ function AllRoutes() {
                 <Route exact path='/' element={<PrivateRoute><Board /></PrivateRoute>} />
                 <Route path='/signin' element={<Signin />} />
                 <Route path='/signup' element={<Signup />} />
+                <Route path='/signout' element={<Signin />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </LazyLoadHandler>

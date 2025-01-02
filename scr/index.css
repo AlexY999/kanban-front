@@ -49,7 +49,7 @@ input:focus {
 }
 
 .sidebar {
-    min-height: 70svh;
+    min-height: 80svh;
     width: 22rem;
     background-color: #007bff;
     border-radius: 0px 15px 15px 0px;
@@ -179,7 +179,7 @@ input:focus {
 
 .tasks {
     position: relative;
-    min-height: 90svh;
+    min-height: 80svh;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
