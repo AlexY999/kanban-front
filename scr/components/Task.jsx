@@ -81,6 +81,7 @@ function Task({ t, index }) {
         }
     };
 
+
     const handleTaskDelete = () => {
         dispatch(deleteTask(taskId, boardId, toastMsg));
         onClose();
